@@ -24,7 +24,7 @@ void internal_load_training_set(TRAINING_SET *training_set, const char *filename
     FILE *inputFile = fopen(filename, "r");
 
     if (inputFile == NULL)
-        exit(EXIT_FAILURE);
+	handle_error("Training file not found! [%s]\n", filename);
 
     char *line = NULL;
     size_t len = 0;

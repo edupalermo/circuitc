@@ -8,6 +8,7 @@
 #include "general.h"
 #include "linkedlist.h"
 #include "cstream.h"
+#include "error.h"
 
 typedef struct step
 {

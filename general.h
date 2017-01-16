@@ -9,3 +9,4 @@
 typedef unsigned char BYTE;
 
 #endif // GENERAL_H_INCLUDED
+

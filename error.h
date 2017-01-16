@@ -8,3 +8,4 @@
 void handle_error(const char *format, ...);
 
 #endif // ERROR_H_INCLUDED
+

@@ -3,3 +3,5 @@ obj
 CircuitC.cbp
 CircuitC.depend
 CircuitC.layout
+*.o
+circuit

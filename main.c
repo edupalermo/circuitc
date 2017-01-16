@@ -12,8 +12,14 @@ int main(int argc, char **argv) {
 
     clock_t start = clock();
 
-    //TRAINING_SET *training_set = load_training_set("c:\\temp\\trainingset.txt");
-    TRAINING_SET *training_set = load_training_set("c:\\temp\\training_set_java.txt");
+    TRAINING_SET *training_set;
+
+    if (argc == 0) {
+        training_set = load_training_set("./training_set_java.txt");
+    }
+    else {
+        training_set = load_training_set(argv[1]);
+    }
 
     printf("Loading process took %0.3f\n", diffInMs(clock(), start));
 
