@@ -51,4 +51,8 @@ void propagate(BYTE *state, CIRCUIT_DESCRIPTOR *circuit_descriptor, STEP *step);
 
 signed int compare_circuits(CIRCUIT_DESCRIPTOR *c1, CIRCUIT_DESCRIPTOR *c2);
 
+void circuit_free(CIRCUIT_DESCRIPTOR *circuit_descriptor);
+
+signed int compare_circuit_descriptors(void *c1, void *c2);
+
 #endif // CIRCUIT_H_INCLUDED

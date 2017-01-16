@@ -33,6 +33,6 @@ LIST_ITERATOR *get_iterator(LIST_DESCRIPTOR *list_descriptor);
 void *next(LIST_ITERATOR *list_iterator);
 bool has_next(LIST_ITERATOR *list_iterator);
 
-
+void list_free(LIST_DESCRIPTOR *list_descriptor);
 
 #endif // LINKEDLIST_H_INCLUDED

@@ -49,4 +49,23 @@ bool has_next(LIST_ITERATOR *list_iterator) {
     return list_iterator->list_node != NULL;
 }
 
+void list_free(LIST_DESCRIPTOR *list_descriptor) {
+
+    if (list_descriptor != NULL) {
+        LIST_NODE *list_node = list_descriptor->head;
+
+        while (list_node != NULL) {
+            LIST_NODE *next = list_node->next;
+
+            free(list_node->data);
+            free(list_node);
+
+            list_node = next;
+        }
+
+        free(list_descriptor);
+    }
+
+}
+
 

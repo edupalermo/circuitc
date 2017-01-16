@@ -2,8 +2,6 @@
 
 void propagate_cnode(BYTE *state, CNODE *cnode, BYTE *input, unsigned int i);
 
-signed int compare_circuit_descriptors(CIRCUIT_DESCRIPTOR *c1, CIRCUIT_DESCRIPTOR *c2);
-
 CIRCUIT_DESCRIPTOR *generate_random_circuit(TRAINING_SET *training_set, unsigned int size) {
 
     if (size < training_set->input_size) {
@@ -175,12 +173,12 @@ signed int compare_circuits(CIRCUIT_DESCRIPTOR *c1, CIRCUIT_DESCRIPTOR *c2) {
     return diff;
 }
 
-signed int compare_circuit_descriptors(CIRCUIT_DESCRIPTOR *c1, CIRCUIT_DESCRIPTOR *c2) {
+signed int compare_circuit_descriptors(void *c1, void *c2) {
 
     signed int diff = 0;
 
-    LIST_ITERATOR *i1 = get_iterator(c1->list_descriptor);
-    LIST_ITERATOR *i2 = get_iterator(c2->list_descriptor);
+    LIST_ITERATOR *i1 = get_iterator(((CIRCUIT_DESCRIPTOR *)c1)->list_descriptor);
+    LIST_ITERATOR *i2 = get_iterator(((CIRCUIT_DESCRIPTOR *)c2)->list_descriptor);
 
     while ((diff == 0) && (has_next(i1))) {
         CNODE *cnode1 = next(i1);
@@ -193,4 +191,12 @@ signed int compare_circuit_descriptors(CIRCUIT_DESCRIPTOR *c1, CIRCUIT_DESCRIPTO
     free(i2);
 
     return diff;
+}
+
+void circuit_free(CIRCUIT_DESCRIPTOR *circuit_descriptor) {
+    if (circuit_descriptor != NULL) {
+        list_free(circuit_descriptor->list_descriptor);
+        free(circuit_descriptor->grades);
+        free(circuit_descriptor);
+    }
 }
