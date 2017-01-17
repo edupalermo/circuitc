@@ -2,6 +2,7 @@
 #define ARRAYLIST_H_INCLUDED
 
 #include <string.h> //memcpy
+#include <stdio.h> //printf
 
 #include "error.h"
 #include "util.h"

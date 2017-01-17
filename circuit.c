@@ -159,6 +159,21 @@ void propagate_cnode(BYTE *state, CNODE *cnode, BYTE *input, unsigned int i) {
 
 signed int compare_circuits(CIRCUIT_DESCRIPTOR *c1, CIRCUIT_DESCRIPTOR *c2) {
 
+    if (c1 == NULL) {
+        handle_error("Cannot compare circuits, first one is NULL.");
+    }
+
+    if (c2 == NULL) {
+        handle_error("Cannot compare circuits, second one is NULL.");
+    }
+
+    signed int diff = c2->grades[0] - c1->grades[0];
+
+    if (diff == 0) {
+
+        diff = c1->grades[1] - c2->grades[1];
+
+
     signed int diff = c2->grades[0] - c1->grades[0];
 
     if (diff == 0) {
@@ -174,6 +189,8 @@ signed int compare_circuits(CIRCUIT_DESCRIPTOR *c1, CIRCUIT_DESCRIPTOR *c2) {
 }
 
 signed int compare_circuit_descriptors(void *c1, void *c2) {
+
+    printf("P1 %p P2 %p \n", c1, c2);
 
     signed int diff = 0;
 

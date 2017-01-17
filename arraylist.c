@@ -82,6 +82,8 @@ signed int array_list_oredered_add_if_unique(ARRAY_LIST_DESCRIPTOR *array_list_d
         do  {
             index = min + ((max - min) / 2);
 
+            printf("Min %d Max %d Index %d Size %d\n", min, max, index, array_list_descriptor->size);
+
             signed int compare_result = comparator(array_list_descriptor->array[index], data);
 
             if (compare_result == 0) {
