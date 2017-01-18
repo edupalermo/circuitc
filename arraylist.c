@@ -38,7 +38,15 @@ void array_list_insert(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, unsigned in
         handle_error("Tying to add an element to a null array_list descriptor");
     }
 
+    if (data == NULL) {
+        handle_error("Cannot add NULL value to array list!");
+    }
+
     if (index > array_list_descriptor->size) {
+        handle_error("Invalid index [%d] used on insert in the array_list with size [%d]", index, array_list_descriptor->size);
+    }
+
+    if (index < 0) {
         handle_error("Invalid index [%d] used on insert in the array_list with size [%d]", index, array_list_descriptor->size);
     }
 
@@ -51,10 +59,12 @@ void array_list_insert(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, unsigned in
         }
     }
 
-    if (index < array_list_descriptor->size) {
-        size_t data_size = sizeof(void *);
-        void *insert_point = (array_list_descriptor->array + (index * data_size));
-        memcpy(insert_point + data_size , insert_point, (array_list_descriptor->size - index) * data_size);
+    if ((array_list_descriptor->size > 0) && (index < (array_list_descriptor->size - 1))) {
+        signed int i;
+        for (i = (array_list_descriptor->size - 1); i >= ((signed int)index); i--) {
+            printf("Moving data [%d] to [%d] \n", i, (i+1));
+            array_list_descriptor->array[i + 1] = array_list_descriptor->array[i];
+        }
     }
 
     array_list_descriptor->array[index] = data;
@@ -102,6 +112,7 @@ signed int array_list_oredered_add_if_unique(ARRAY_LIST_DESCRIPTOR *array_list_d
 
 
     if (index != -1) {
+        printf("Inserting on index [%d] \n", index);
         array_list_insert(array_list_descriptor, index, data);
     }
 

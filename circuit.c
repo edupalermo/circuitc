@@ -173,13 +173,6 @@ signed int compare_circuits(CIRCUIT_DESCRIPTOR *c1, CIRCUIT_DESCRIPTOR *c2) {
 
         diff = c1->grades[1] - c2->grades[1];
 
-
-    signed int diff = c2->grades[0] - c1->grades[0];
-
-    if (diff == 0) {
-
-        diff = c1->grades[1] - c2->grades[1];
-
         if (diff == 0) {
             diff = compare_circuit_descriptors(c1, c2);
         }
