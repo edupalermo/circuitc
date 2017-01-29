@@ -51,7 +51,7 @@ ARRAY_LIST_DESCRIPTOR *generate_inital_population(unsigned int size, TRAINING_SE
         CIRCUIT_DESCRIPTOR *circuit_descriptor = generate_random_circuit(training_set, 300);
         evaluate(circuit_descriptor, training_set);
 
-        if (array_list_oredered_add_if_unique(population, &compare_circuit_descriptors, circuit_descriptor) == -1) {
+        if (array_list_oredered_add_if_unique(population, &compare_circuits, circuit_descriptor) == -1) {
             circuit_free(circuit_descriptor);
         }
     }
@@ -65,7 +65,7 @@ void dump_population(ARRAY_LIST_DESCRIPTOR *population, unsigned int top) {
 
     for (i = 0; i < top; i++) {
         CIRCUIT_DESCRIPTOR *circuit_descriptor = array_list_get(population, i);
-        sprintf(message, "Hits [%d] Size [%d]", circuit_descriptor->grades[0], circuit_descriptor->grades[1]);
+        sprintf(message, "Hits [%2d] Size [%d]", circuit_descriptor->grades[0], circuit_descriptor->grades[1]);
         printf("[%d] %s\n", i+1, message);
     }
 }

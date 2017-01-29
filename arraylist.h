@@ -10,6 +10,10 @@
 
 typedef signed int (*COMPARATOR)(void *,void *);
 
+typedef void (*FREE_ARRAY_LIST_DATA)(void *);
+
+
+
 typedef struct array_list_descriptor {
 
     unsigned int size;
@@ -19,6 +23,8 @@ typedef struct array_list_descriptor {
     unsigned int mod_count;
 
     void **array;
+
+    FREE_ARRAY_LIST_DATA free_array_list_data;
 
 } ARRAY_LIST_DESCRIPTOR;
 

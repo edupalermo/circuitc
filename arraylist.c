@@ -9,6 +9,7 @@ ARRAY_LIST_DESCRIPTOR *array_list_create(unsigned int initial_size) {
     new_array_list->size = 0;
     new_array_list->mod_count = 0;
     new_array_list->max = initial_size;
+    new_array_list->free_array_list_data = NULL;
 
     new_array_list->array = malloc(initial_size * sizeof(void *));
 
@@ -59,18 +60,33 @@ void array_list_insert(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, unsigned in
         }
     }
 
-    if ((array_list_descriptor->size > 0) && (index < (array_list_descriptor->size - 1))) {
+    if ((array_list_descriptor->size > 0) && (index < array_list_descriptor->size)) {
         signed int i;
         for (i = (array_list_descriptor->size - 1); i >= ((signed int)index); i--) {
-            printf("Moving data [%d] to [%d] \n", i, (i+1));
+            //printf("Moving data [%d] to [%d] \n", i, (i+1));
             array_list_descriptor->array[i + 1] = array_list_descriptor->array[i];
         }
     }
+    /*
+    else {
+        printf("No shifting...\n");
+    }
+    */
 
     array_list_descriptor->array[index] = data;
 
     array_list_descriptor->size++;
     array_list_descriptor->mod_count++;
+
+
+    /*
+    signed int i;
+    for (i = 0; i < array_list_descriptor->size; i++) {
+        printf("[%d] - %p \n", i, array_list_descriptor->array[i]);
+    }
+    */
+
+
 }
 
 signed int array_list_oredered_add_if_unique(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, COMPARATOR comparator, void *data) {
@@ -92,7 +108,7 @@ signed int array_list_oredered_add_if_unique(ARRAY_LIST_DESCRIPTOR *array_list_d
         do  {
             index = min + ((max - min) / 2);
 
-            printf("Min %d Max %d Index %d Size %d\n", min, max, index, array_list_descriptor->size);
+            // printf("Min %d Max %d Index %d Size %d\n", min, max, index, array_list_descriptor->size);
 
             signed int compare_result = comparator(array_list_descriptor->array[index], data);
 
@@ -112,11 +128,16 @@ signed int array_list_oredered_add_if_unique(ARRAY_LIST_DESCRIPTOR *array_list_d
 
 
     if (index != -1) {
-        printf("Inserting on index [%d] \n", index);
+        // printf("Inserting on index [%d] \n", index);
         array_list_insert(array_list_descriptor, index, data);
     }
 
     return index;
+}
+
+void array_list_free(ARRAY_LIST_DESCRIPTOR *array_list_descriptor) {
+
+
 }
 
 
