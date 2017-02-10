@@ -14,7 +14,7 @@ void count_hits_from_solution(CIRCUIT_DESCRIPTOR *circuit_descriptor, SOLUTION *
 
 void increment_score(unsigned int **score, unsigned int circuit_length, BYTE *state, BYTE *output, unsigned int output_size);
 
-void evaluate(CIRCUIT_DESCRIPTOR *circuit_descriptor, TRAINING_SET *training_set) {
+void evaluation_evaluate(CIRCUIT_DESCRIPTOR *circuit_descriptor, TRAINING_SET *training_set) {
     // If there is evaluation, clean it
     if (circuit_descriptor->grades != NULL) {
         free(circuit_descriptor->grades);
@@ -44,7 +44,7 @@ unsigned int count_hits(CIRCUIT_DESCRIPTOR *circuit_descriptor, TRAINING_SET *tr
 
     free(list_iterator);
 
-    unsigned int total = totalize_hits(score, circuit_descriptor->list_descriptor->size, training_set->output_size);
+    unsigned int total = totalize_hits(score, circuit_descriptor->array_list_descriptor->size, training_set->output_size);
 
     free(score);
     return total;
@@ -52,7 +52,7 @@ unsigned int count_hits(CIRCUIT_DESCRIPTOR *circuit_descriptor, TRAINING_SET *tr
 
 unsigned int **allocate_score(CIRCUIT_DESCRIPTOR *circuit_descriptor, TRAINING_SET *training_set) {
 
-    unsigned int circuit_size = circuit_descriptor->list_descriptor->size;
+    unsigned int circuit_size = circuit_descriptor->array_list_descriptor->size;
 
     unsigned int **score = calloc(circuit_size, sizeof(unsigned int *));
 
@@ -80,7 +80,7 @@ void count_hits_from_solution(CIRCUIT_DESCRIPTOR *circuit_descriptor, SOLUTION *
         STEP *step = next(steps_iterator);
         propagate(state, circuit_descriptor, step);
 
-        increment_score(score, circuit_descriptor->list_descriptor->size, state, step->output, output_size);
+        increment_score(score, circuit_descriptor->array_list_descriptor->size, state, step->output, output_size);
     }
 
     free(steps_iterator);
@@ -118,5 +118,5 @@ void increment_score(unsigned int **score, unsigned int circuit_length, BYTE *st
 
 
 void evaluate_size(CIRCUIT_DESCRIPTOR *circuit_descriptor, TRAINING_SET *training_set, int index) {
-    circuit_descriptor->grades[index] = circuit_descriptor->list_descriptor->size;
+    circuit_descriptor->grades[index] = circuit_descriptor->array_list_descriptor->size;
 }

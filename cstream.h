@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "general.h"
+#include "global.h"
 
 int readline(char **lineptr, size_t *n , FILE *stream);
 

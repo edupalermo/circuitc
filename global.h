@@ -1,5 +1,5 @@
-#ifndef GENERAL_H_INCLUDED
-#define GENERAL_H_INCLUDED
+#ifndef GLOBAL_H_INCLUDED
+#define GLOBAL_H_INCLUDED
 
 #define CHECK_CONSISTENCY 1
 
@@ -8,5 +8,5 @@
 
 typedef unsigned char BYTE;
 
-#endif // GENERAL_H_INCLUDED
 
+#endif // GLOBAL_H_INCLUDED

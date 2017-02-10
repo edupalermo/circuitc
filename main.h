@@ -4,12 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "general.h"
+#include "global.h"
 #include "cstream.h"
 #include "trainingset.h"
 #include "util.h"
 #include "circuit.h"
 #include "evaluation.h"
 #include "arraylist.h"
+#include "population.h"
 
 #endif // MAIN_H_INCLUDED

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "general.h"
+#include "global.h"
 
 typedef struct list_node {
     struct list_node *prev;

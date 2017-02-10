@@ -61,11 +61,13 @@ void array_list_insert(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, unsigned in
     }
 
     if ((array_list_descriptor->size > 0) && (index < array_list_descriptor->size)) {
-        signed int i;
-        for (i = (array_list_descriptor->size - 1); i >= ((signed int)index); i--) {
+        //signed int i;
+        //for (i = (array_list_descriptor->size - 1); i >= ((signed int)index); i--) {
             //printf("Moving data [%d] to [%d] \n", i, (i+1));
-            array_list_descriptor->array[i + 1] = array_list_descriptor->array[i];
-        }
+            //array_list_descriptor->array[i + 1] = array_list_descriptor->array[i];
+        //}
+        // memmove should be used if memory overlap
+        memmove(&(array_list_descriptor->array[index + 1]), &(array_list_descriptor->array[index]), sizeof(void *) * (array_list_descriptor->size - index));
     }
     /*
     else {
@@ -137,6 +139,46 @@ signed int array_list_oredered_add_if_unique(ARRAY_LIST_DESCRIPTOR *array_list_d
 
 void array_list_free(ARRAY_LIST_DESCRIPTOR *array_list_descriptor) {
 
+    FREE_ARRAY_LIST_DATA free_procedure = array_list_descriptor->free_array_list_data;
+
+    if (free_procedure == NULL) {
+        free_procedure = &free;
+    }
+
+    signed int i;
+
+    for (i = 0; i < array_list_descriptor->size; i++) {
+        (*free_procedure)(array_list_descriptor->array[i]);
+    }
+
+    free(array_list_descriptor->array);
+    free(array_list_descriptor);
+
+}
+
+void array_list_remove(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, unsigned int index) {
+
+    #ifdef CHECK_CONSISTENCY
+    if (index >= array_list_descriptor->size) {
+        handle_error("ArrayList invalid remove index [%d]", index);
+    }
+    #endif
+
+    FREE_ARRAY_LIST_DATA free_procedure = array_list_descriptor->free_array_list_data;
+
+    if (free_procedure == NULL) {
+        free_procedure = &free;
+    }
+
+    (*free_procedure)(array_list_descriptor->array[index]);
+
+
+    if (index < (array_list_descriptor->size - 1)) {
+        memmove(&(array_list_descriptor->array[index]), &(array_list_descriptor->array[index + 1]), sizeof(void *) * (array_list_descriptor->size - index - 1));
+    }
+
+    array_list_descriptor->size--;
+    array_list_descriptor->mod_count++;
 
 }
 

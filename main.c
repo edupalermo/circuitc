@@ -2,9 +2,14 @@
 
 #define POPULATION_LIMIT 10000
 
+#define CYCLE_MS 10000
+
+
 ARRAY_LIST_DESCRIPTOR *generate_inital_population(unsigned int size, TRAINING_SET *training_set);
 
 void dump_population(ARRAY_LIST_DESCRIPTOR *population, unsigned int top);
+
+void evolve_population(ARRAY_LIST_DESCRIPTOR *population, TRAINING_SET *training_set);
 
 int main(int argc, char **argv) {
 
@@ -27,47 +32,25 @@ int main(int argc, char **argv) {
 
     start = clock();
 
-    ARRAY_LIST_DESCRIPTOR *population = generate_inital_population(500, training_set);
+    ARRAY_LIST_DESCRIPTOR *population = population_generate_inital(POPULATION_LIMIT, 400, training_set);
 
     printf("Population generation took %0.3f\n", diffInMs(clock(), start));
 
-    dump_population(population, 30);
+    population_dump(population, 30);
 
-    //start = clock();
+    signed int i;
+    for (i = 0 ; i < 10; i ++) {
+        population_evolve(population, training_set, CYCLE_MS);
+        population_dump(population, 30);
+    }
 
 
-//    printf("Total Hits [%d] Size [%d]\n", circuit_descriptor->grades[0], circuit_descriptor->grades[1]);
+//    printf("\nBetter circuit\n");
+//    char *better = circuit_to_string(population->array[0]);
+//    printf("%s\n", better);
+//    free(better);
 
-//    printf("Circuit evaluation took %0.3f\n", diffInMs(clock(), start));
     exit(EXIT_SUCCESS);
-}
-
-ARRAY_LIST_DESCRIPTOR *generate_inital_population(unsigned int size, TRAINING_SET *training_set) {
-    int i;
-
-    ARRAY_LIST_DESCRIPTOR *population = array_list_create(POPULATION_LIMIT);
-
-    for (i = 0; i < size; i++) {
-        CIRCUIT_DESCRIPTOR *circuit_descriptor = generate_random_circuit(training_set, 300);
-        evaluate(circuit_descriptor, training_set);
-
-        if (array_list_oredered_add_if_unique(population, &compare_circuits, circuit_descriptor) == -1) {
-            circuit_free(circuit_descriptor);
-        }
-    }
-
-    return population;
-}
-
-void dump_population(ARRAY_LIST_DESCRIPTOR *population, unsigned int top) {
-    unsigned int i;
-    char message[256];
-
-    for (i = 0; i < top; i++) {
-        CIRCUIT_DESCRIPTOR *circuit_descriptor = array_list_get(population, i);
-        sprintf(message, "Hits [%2d] Size [%d]", circuit_descriptor->grades[0], circuit_descriptor->grades[1]);
-        printf("[%d] %s\n", i+1, message);
-    }
 }
 
 

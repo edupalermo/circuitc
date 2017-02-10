@@ -4,6 +4,7 @@
 #include <string.h> //memcpy
 #include <stdio.h> //printf
 
+#include "global.h"
 #include "error.h"
 #include "util.h"
 
@@ -39,5 +40,9 @@ void *array_list_get(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, unsigned int 
 void array_list_insert(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, unsigned int index, void *data);
 
 signed int array_list_oredered_add_if_unique(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, COMPARATOR comparator, void *data);
+
+void array_list_free(ARRAY_LIST_DESCRIPTOR *array_list_descriptor);
+
+void array_list_remove(ARRAY_LIST_DESCRIPTOR *array_list_descriptor, unsigned int index);
 
 #endif // ARRAYLIST_H_INCLUDED

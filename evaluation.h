@@ -4,6 +4,6 @@
 #include "trainingset.h"
 #include "circuit.h"
 
-void evaluate(CIRCUIT_DESCRIPTOR *circuit_descriptor, TRAINING_SET *training_set);
+void evaluation_evaluate(CIRCUIT_DESCRIPTOR *circuit_descriptor, TRAINING_SET *training_set);
 
 #endif // EVALUATION_H_INCLUDED

@@ -3,6 +3,7 @@
 
 #include "trainingset.h"
 #include "crandom.h"
+#include "arraylist.h"
 
 typedef enum {AND, OR, NAND, NOR, MEM, INPUT, NOT} CTYPE;
 
@@ -29,12 +30,12 @@ typedef struct cnode {
 
 typedef struct circuit_descriptor {
     unsigned int *grades;
-    LIST_DESCRIPTOR *list_descriptor;
+    ARRAY_LIST_DESCRIPTOR *array_list_descriptor;
 
 } CIRCUIT_DESCRIPTOR;
 
 
-CIRCUIT_DESCRIPTOR *generate_random_circuit(TRAINING_SET *training_set, unsigned int size);
+CIRCUIT_DESCRIPTOR *circuit_randomly_generate(TRAINING_SET *training_set, unsigned int size);
 
 CNODE *generate_random_cnode(unsigned int size);
 
@@ -49,9 +50,10 @@ void reset_circuit_state(CIRCUIT_DESCRIPTOR *circuit_descriptor);
 
 void propagate(BYTE *state, CIRCUIT_DESCRIPTOR *circuit_descriptor, STEP *step);
 
+char *circuit_to_string(CIRCUIT_DESCRIPTOR *circuit_descriptor);
 
 void circuit_free(CIRCUIT_DESCRIPTOR *circuit_descriptor);
 
-signed int compare_circuits(void *c1, void *c2);
+signed int circuit_compare(void *c1, void *c2);
 
 #endif // CIRCUIT_H_INCLUDED

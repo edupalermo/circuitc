@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "general.h"
+#include "global.h"
 #include "linkedlist.h"
 #include "cstream.h"
 #include "error.h"
