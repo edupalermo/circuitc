@@ -1,5 +1,5 @@
-circuit : main.o util.o trainingset.o linkedlist.o evaluation.o cstream.o circuit.o arraylist.o crandom.o error.o population.o
-	gcc -o circuit main.o util.o trainingset.o linkedlist.o evaluation.o cstream.o circuit.o arraylist.o crandom.o error.o population.o
+circuit : main.o util.o trainingset.o linkedlist.o evaluation.o cstream.o circuit.o arraylist.o crandom.o error.o population.o receiver.o hive.o
+	gcc -o circuit main.o util.o trainingset.o linkedlist.o evaluation.o cstream.o circuit.o arraylist.o crandom.o error.o population.o receiver.o hive.o -lpthread
 
 main.o : main.c main.h global.h
 	gcc -g -c main.c -o main.o
@@ -34,7 +34,13 @@ crandom.o : crandom.c crandom.h global.h
 error.o : error.c error.h global.h
 	gcc -g -c error.c -o error.o
 
-clean:
+receiver.o : receiver.c receiver.h global.h
+	gcc -g -c receiver.c -o receiver.o
+
+hive.o : hive.c hive.h global.h
+	gcc -g -c hive.c -o hive.o
+
+debug:
 	rm -fr *.o circuit
 
 

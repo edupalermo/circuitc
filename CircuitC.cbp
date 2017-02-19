@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="CircuitC" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/CircuitC" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="pthread" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/CircuitC" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="pthread" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="arraylist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="arraylist.h" />
+		<Unit filename="circuit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="circuit.h" />
+		<Unit filename="crandom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crandom.h" />
+		<Unit filename="cstream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cstream.h" />
+		<Unit filename="error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="error.h" />
+		<Unit filename="evaluation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="evaluation.h" />
+		<Unit filename="global.h" />
+		<Unit filename="hive.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="hive.h" />
+		<Unit filename="linkedlist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="linkedlist.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.h" />
+		<Unit filename="population.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="population.h" />
+		<Unit filename="receiver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="receiver.h" />
+		<Unit filename="trainingset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="trainingset.h" />
+		<Unit filename="util.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="util.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

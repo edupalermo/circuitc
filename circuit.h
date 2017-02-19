@@ -56,4 +56,6 @@ void circuit_free(CIRCUIT_DESCRIPTOR *circuit_descriptor);
 
 signed int circuit_compare(void *c1, void *c2);
 
+CIRCUIT_DESCRIPTOR *circuit_clone(CIRCUIT_DESCRIPTOR *circuit_descriptor);
+
 #endif // CIRCUIT_H_INCLUDED
