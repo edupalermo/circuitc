@@ -1,8 +1,13 @@
+#ifdef WIN32
+#include <winsock.h>
+#else
+#include <sys/socket.h>
+#include <netinet/in.h>
+#endif
+
 #include <unistd.h>
 #include <stdio.h>
-#include <sys/socket.h>
 #include <stdlib.h>
-#include <netinet/in.h>
 #include <string.h>
 #include <stdlib.h>
 #include <pthread.h>
