@@ -1,10 +1,10 @@
-all: server client
+all: bin/server bin/client
 
-server: server.c
-	gcc -o server server.c -lpthread
+bin/server: src/server.c
+	gcc -o bin/server src/server.c -lpthread
 
-client: client.c
-	gcc -o client client.c -lpthread
+bin/client: src/client.c
+	gcc -o bin/client src/client.c -lpthread
 
 clean:
-	rm client server
+	rm -f bin/client bin/server
