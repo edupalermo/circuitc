@@ -1,0 +1,12 @@
+- name: ram
+  type: memory
+  save: 20Mib   
+- name: data1
+  type: directory
+  path: /home/palermo/workspace/circuitc/data1
+  save: 1GiB
+- name: data2
+  type: directory
+  path: /home/palermo/workspace/circuitc/data2
+  save: 1GiB
+         

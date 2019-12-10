@@ -13,12 +13,8 @@
 #include <pthread.h>
 #define PORT 8080
 
-typedef struct _cir_client_context {
-	pthread_t thread_id;
-	int socket;
-} cir_client_context;
-
-void *clientHandler(void *vargp);
+#include "protocol.h"
+#include "server.h"
 
 int main() {
 	int server_fd, valread;
